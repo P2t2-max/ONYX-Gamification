@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONYX: Вызов принят</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #fff; color: #2c3e50; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; }
+        .header { text-align: center; background-color: #2c3e50; color: white; padding: 10px; border-radius: 5px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ecf0f1; border-radius: 5px; background-color: #f5f6fa; }
+        .task-level h2 { margin-top: 0; }
+        .task { margin: 10px 0; }
+        .task input[type="file"] { margin-top: 5px; }
+        .task button { background-color: #2ecc71; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .task button:hover { background-color: #27ae60; }
+        .balance, .gifts { margin: 10px 0; }
+        .leaderboard h3, .balance h3, .gifts h3 { margin-top: 0; }
+        .leaderboard ul, .gifts ul { list-style: none; padding: 0; }
+        .leaderboard li, .gifts li { padding: 5px 0; }
+        #points, .gift-item { font-weight: bold; color: #e67e22; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ONYX: Вызов принят</h1>
+            <p>Ваши баллы: <span id="points">0</span></p>
+        </div>
+
+        <div class="section task-level" id="level1">
+            <h2>🟢 Level 1 — Новичок</h2>
+            <div class="task"><input type="file" id="task1-1" accept="image/*,video/*"><button onclick="submitTask('task1-1', 50, 'Подписка на Telegram/Instagram')">Приложить файл</button> Подпишись на Telegram и Instagram ONYX — 50 баллов</div>
+            <div class="task"><input type="file" id="task1-2" accept="image/*,video/*"><button onclick="submitTask('task1-2', 100, 'Покупка')">Приложить файл</button> Оформи покупку — 100 баллов</div>
+            <div class="task"><input type="file" id="task1-3" accept="image/*,video/*"><button onclick="submitTask('task1-3', 100, 'Отзыв')">Приложить файл</button> Оставь отзыв — 100 баллов</div>
+            <div class="task"><input type="file" id="task1-4" accept="image/*,video/*"><button onclick="submitTask('task1-4', 150, 'Сторис')">Приложить файл</button> Отметь в сторис — 150 баллов</div>
+            <div class="task"><input type="file" id="task1-5" accept="image/*,video/*"><button onclick="submitTask('task1-5', 70, 'Викторина')">Приложить файл</button> Участвуй в викторине — 70 баллов</div>
+        </div>
+
+        <div class="section task-level" id="level2">
+            <h2>🟡 Level 2 — Хастлер</h2>
+            <div class="task"><input type="file" id="task2-1" accept="image/*,video/*"><button onclick="submitTask('task2-1', 300, 'Реферал')">Приложить файл</button> Приведи друга — 300 баллов</div>
+            <div class="task"><input type="file" id="task2-2" accept="image/*,video/*"><button onclick="submitTask('task2-2', 300, 'Трейд-ин')">Приложить файл</button> Принеси смартфон — 300 баллов</div>
+            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-3', 400, 'Обзор')">Приложить файл</button> Сними обзор — 400 баллов</div>
+            <div class="task"><input type="file" id="task2-4" accept="image/*,video/*"><button onclick="submitTask('task2-4', 500, 'Репортаж')">Приложить файл</button> Сделай репортаж — 500 баллов</div>
+            <div class="task"><input type="file" id="task2-5" accept="image/*,video/*"><button onclick="submitTask('task2-5', 500, 'Статья')">Приложить файл</button> Напиши статью — 500 баллов</div>
+        </div>
+
+        <div class="section task-level" id="level3">
+            <h2>🔵 Level 3 — Резидент ONYX</h2>
+            <div class="task"><input type="file" id="task3-1" accept="image/*,video/*"><button onclick="submitTask('task3-1', 600, 'Reels')">Приложить файл</button> Reels с сюжетом — 600 баллов</div>
+            <div class="task"><input type="file" id="task3-2" accept="image/*,video/*"><button onclick="submitTask('task3-2', 800, '5 рефералов')">Приложить файл</button> 5 рефералов — 800 баллов</div>
+            <div class="task"><input type="file" id="task3-3" accept="image/*,video/*"><button onclick="submitTask('task3-3', 1000, 'TikTok')">Приложить файл</button> Вирусный TikTok — 1000 баллов</div>
+            <div class="task"><input type="file" id="task3-4" accept="image/*,video/*"><button onclick="submitTask('task3-4', 1200, 'Флешмоб')">Приложить файл</button> Уличный флешмоб — 1200 баллов</div>
+            <div class="task"><input type="file" id="task3-5" accept="image/*,video/*"><button onclick="submitTask('task3-5', 1500, 'Косплей')">Приложить файл</button> Косплей-продавец — 1500 баллов</div>
+        </div>
+
+        <div class="section task-level" id="level4">
+            <h2>🔴 Level 4 — Безбашенный</h2>
+            <div class="task"><input type="file" id="task4-1" accept="image/*,video/*"><button onclick="submitTask('task4-1', 0, 'Парашют', 'iPhone 16 Pro')">Приложить файл</button> Прыжок с парашютом — iPhone 16 Pro</div>
+            <div class="task"><input type="file" id="task4-2" accept="image/*,video/*"><button onclick="submitTask('task4-2', 0, 'Крыша', 'MacBook')">Приложить файл</button> Крыша ТЦ — MacBook</div>
+            <div class="task"><input type="file" id="task4-3" accept="image/*,video/*"><button onclick="submitTask('task4-3', 0, 'Тату', 'AirPods + техника')">Приложить файл</button> Тату ONYX — AirPods + техника</div>
+            <div class="task"><input type="file" id="task4-4" accept="image/*,video/*"><button onclick="submitTask('task4-4', 0, 'Влог', '100 000 ₽')">Приложить файл</button> Влог — 100 000 ₽</div>
+            <div class="task"><input type="file" id="task4-5" accept="image/*,video/*"><button onclick="submitTask('task4-5', 0, '1M просмотров', 'Любой приз')">Приложить файл</button> 1M просмотров — любой приз</div>
+        </div>
+
+        <div class="section balance">
+            <h3>Баланс бонусных рублей</h3>
+            <p>Баллы, которые можно обменять на призы: <span id="bonusPoints">0</span> ₽</p>
+        </div>
+
+        <div class="section gifts">
+            <h3>Мои подарки</h3>
+            <ul id="giftsList"></ul>
+        </div>
+
+        <div class="section leaderboard">
+            <h3>Таблица лидеров</h3>
+            <ul id="leaderboard"></ul>
+        </div>
+    </div>
+
+    <script>
+        let points = 0;
+        let bonusPoints = 0;
+        let userId;
+        const completedTasks = new Set();
+        const gifts = new Set();
+        const SERVER_URL = 'http://your-server-url.com/submit'; // Замените на URL вашего сервера
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initData = Telegram.WebApp.initDataUnsafe;
+            userId = initData?.user?.id || Math.floor(Math.random() * 1000000);
+            document.getElementById('points').textContent = points;
+            document.getElementById('bonusPoints').textContent = bonusPoints;
+            updateLeaderboard();
+            updateGifts();
+        });
+
+        function updatePoints() {
+            document.getElementById('points').textContent = points;
+        }
+
+        function updateBonusPoints() {
+            document.getElementById('bonusPoints').textContent = bonusPoints;
+        }
+
+        function updateGifts() {
+            const giftsList = document.getElementById('giftsList');
+            giftsList.innerHTML = '';
+            if (gifts.size === 0) {
+                giftsList.innerHTML = '<li>У вас пока нет подарков</li>';
+            } else {
+                gifts.forEach(gift => {
+                    const li = document.createElement('li');
+                    li.textContent = gift;
+                    li.className = 'gift-item';
+                    giftsList.appendChild(li);
+                });
+            }
+        }
+
+        function submitTask(taskId, pointsValue, taskName, prize = null) {
+            const fileInput = document.getElementById(taskId);
+            if (fileInput.files.length > 0 && !completedTasks.has(taskId)) {
+                completedTasks.add(taskId);
+                const file = fileInput.files[0];
+                const formData = new FormData();
+                formData.append('userId', userId);
+                formData.append('taskName', taskName);
+                formData.append('pointsValue', pointsValue);
+                formData.append('prize', prize || '');
+                formData.append('file', file);
+
+                fetch(SERVER_URL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'pending') {
+                        alert(`Файл для "${taskName}" отправлен модератору на проверку.`);
+                    } else if (data.status === 'approved') {
+                        points += pointsValue;
+                        updatePoints();
+                        if (pointsValue > 0) {
+                            bonusPoints += pointsValue;
+                            updateBonusPoints();
+                        }
+                        if (prize) {
+                            gifts.add(prize);
+                            updateGifts();
+                            alert(`Задание "${taskName}" одобрено! Приз: ${prize}`);
+                        } else {
+                            alert(`Задание "${taskName}" одобрено! +${pointsValue} баллов`);
+                        }
+                    } else if (data.status === 'rejected') {
+                        alert(`Задание "${taskName}" отклонено. Свяжитесь с модератором (@ModeratorID: 8107482231).`);
+                    }
+                })
+                .catch(error => alert('Ошибка при отправке файла. Попробуйте снова.'));
+            } else {
+                alert('Задание уже выполнено или файл не выбран!');
+            }
+        }
+
+        function updateLeaderboard() {
+            const leaderboard = document.getElementById('leaderboard');
+            leaderboard.innerHTML = '';
+            const leaders = [
+                { id: 123456, points: 5000 },
+                { id: 654321, points: 3000 },
+                { id: userId, points: points }
+            ].sort((a, b) => b.points - a.points).slice(0, 3);
+            leaders.forEach((leader, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ID ${leader.id}: ${leader.points} баллов`;
+                leaderboard.appendChild(li);
+            });
+        }
+
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+        Telegram.WebApp.MainButton.setText('Обновить');
+        Telegram.WebApp.MainButton.onClick(updateLeaderboard);
+    </script>
+</body>
+</html>
