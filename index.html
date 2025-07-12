@@ -18,8 +18,7 @@
         .balance, .gifts { margin: 10px 0; }
         .leaderboard h3, .balance h3, .gifts h3 { margin-top: 0; }
         .leaderboard ul, .gifts ul { list-style: none; padding: 0; }
-        .leaderboard li, .gifts li { padding: 5px 0; }
-        #points, .gift-item { font-weight: bold; color: #e67e22; }
+        .leaderboard li, .gift-item { padding: 5px 0; font-weight: bold; color: #e67e22; }
     </style>
 </head>
 <body>
@@ -42,7 +41,7 @@
             <h2>🟡 Level 2 — Хастлер</h2>
             <div class="task"><input type="file" id="task2-1" accept="image/*,video/*"><button onclick="submitTask('task2-1', 300, 'Реферал')">Приложить файл</button> Приведи друга — 300 баллов</div>
             <div class="task"><input type="file" id="task2-2" accept="image/*,video/*"><button onclick="submitTask('task2-2', 300, 'Трейд-ин')">Приложить файл</button> Принеси смартфон — 300 баллов</div>
-            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-3', 400, 'Обзор')">Приложить файл</button> Сними обзор — 400 баллов</div>
+            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-2', 400, 'Обзор')">Приложить файл</button> Сними обзор — 400 баллов</div>
             <div class="task"><input type="file" id="task2-4" accept="image/*,video/*"><button onclick="submitTask('task2-4', 500, 'Репортаж')">Приложить файл</button> Сделай репортаж — 500 баллов</div>
             <div class="task"><input type="file" id="task2-5" accept="image/*,video/*"><button onclick="submitTask('task2-5', 500, 'Статья')">Приложить файл</button> Напиши статью — 500 баллов</div>
         </div>
@@ -87,15 +86,19 @@
         let userId;
         const completedTasks = new Set();
         const gifts = new Set();
-        const SERVER_URL = 'http://localhost:5001 '; // Замените на URL вашего сервера
+        const SERVER_URL = 'http://localhost:5001'; // Замени на свой ngrok URL
 
         document.addEventListener('DOMContentLoaded', () => {
-            const initData = Telegram.WebApp.initDataUnsafe;
-            userId = initData?.user?.id || Math.floor(Math.random() * 1000000);
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+            userId = tg.initDataUnsafe?.user?.id || `guest_${Math.floor(Math.random() * 1000000)}`; // Автоматически определяем userId
             document.getElementById('points').textContent = points;
             document.getElementById('bonusPoints').textContent = bonusPoints;
             updateLeaderboard();
             updateGifts();
+            tg.MainButton.setText('Обновить');
+            tg.MainButton.onClick(updateLeaderboard);
         });
 
         function updatePoints() {
@@ -115,7 +118,6 @@
                 gifts.forEach(gift => {
                     const li = document.createElement('li');
                     li.textContent = gift;
-                    li.className = 'gift-item';
                     giftsList.appendChild(li);
                 });
             }
@@ -137,29 +139,19 @@
                     method: 'POST',
                     body: formData
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
                 .then(data => {
                     if (data.status === 'pending') {
                         alert(`Файл для "${taskName}" отправлен модератору на проверку.`);
-                    } else if (data.status === 'approved') {
-                        points += pointsValue;
-                        updatePoints();
-                        if (pointsValue > 0) {
-                            bonusPoints += pointsValue;
-                            updateBonusPoints();
-                        }
-                        if (prize) {
-                            gifts.add(prize);
-                            updateGifts();
-                            alert(`Задание "${taskName}" одобрено! Приз: ${prize}`);
-                        } else {
-                            alert(`Задание "${taskName}" одобрено! +${pointsValue} баллов`);
-                        }
-                    } else if (data.status === 'rejected') {
-                        alert(`Задание "${taskName}" отклонено. Свяжитесь с модератором (@ModeratorID: 8107482231).`);
+                    } else if (data.status === 'error') {
+                        alert(data.message || 'Ошибка при обработке задания.');
+                        completedTasks.delete(taskId); // Разрешаем повторную попытку
                     }
                 })
-                .catch(error => alert('Ошибка при отправке файла. Попробуйте снова.'));
+                .catch(error => alert(`Ошибка при отправке файла, попробуйте снова: ${error.message}`));
             } else {
                 alert('Задание уже выполнено или файл не выбран!');
             }
@@ -179,11 +171,6 @@
                 leaderboard.appendChild(li);
             });
         }
-
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
-        Telegram.WebApp.MainButton.setText('Обновить');
-        Telegram.WebApp.MainButton.onClick(updateLeaderboard);
     </script>
 </body>
 </html>
