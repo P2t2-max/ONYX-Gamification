@@ -41,7 +41,7 @@
             <h2>🟡 Level 2 — Хастлер</h2>
             <div class="task"><input type="file" id="task2-1" accept="image/*,video/*"><button onclick="submitTask('task2-1', 300, 'Реферал')">Приложить файл</button> Приведи друга — 300 баллов</div>
             <div class="task"><input type="file" id="task2-2" accept="image/*,video/*"><button onclick="submitTask('task2-2', 300, 'Трейд-ин')">Приложить файл</button> Принеси смартфон — 300 баллов</div>
-            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-2', 400, 'Обзор')">Приложить файл</button> Сними обзор — 400 баллов</div>
+            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-3', 400, 'Обзор')">Приложить файл</button> Сними обзор — 400 баллов</div>
             <div class="task"><input type="file" id="task2-4" accept="image/*,video/*"><button onclick="submitTask('task2-4', 500, 'Репортаж')">Приложить файл</button> Сделай репортаж — 500 баллов</div>
             <div class="task"><input type="file" id="task2-5" accept="image/*,video/*"><button onclick="submitTask('task2-5', 500, 'Статья')">Приложить файл</button> Напиши статью — 500 баллов</div>
         </div>
@@ -86,13 +86,13 @@
         let userId;
         const completedTasks = new Set();
         const gifts = new Set();
-        const SERVER_URL = 'https://8e904bef962c.ngrok-free.app/submit'; 
+        const SERVER_URL = 'https://550e5106cf8b.ngrok-free.app/submit';
 
         document.addEventListener('DOMContentLoaded', () => {
             const tg = window.Telegram.WebApp;
             tg.ready();
             tg.expand();
-            userId = tg.initDataUnsafe?.user?.id || `guest_${Math.floor(Math.random() * 1000000)}`; // Автоматически определяем userId
+            userId = tg.initDataUnsafe?.user?.id || `guest_${Math.floor(Math.random() * 1000000)}`;
             document.getElementById('points').textContent = points;
             document.getElementById('bonusPoints').textContent = bonusPoints;
             updateLeaderboard();
@@ -123,44 +123,49 @@
             }
         }
 
-       function submitTask(taskId, pointsValue, taskName, prize = null) {
-    const fileInput = document.getElementById(taskId);
-    if (fileInput.files.length > 0 && !completedTasks.has(taskId)) {
-        completedTasks.add(taskId);
-        const file = fileInput.files[0];
-        const formData = new FormData();
-        formData.append('userId', userId);
-        formData.append('taskName', taskName);
-        formData.append('pointsValue', pointsValue);
-        formData.append('prize', prize || '');
-        formData.append('file', file);
+        function submitTask(taskId, pointsValue, taskName, prize = null) {
+            const fileInput = document.getElementById(taskId);
+            const file = fileInput.files ? fileInput.files[0] : null;
+            if (!file) {
+                alert('Сначала нужно приложить файл');
+                return;
+            }
+            if (!completedTasks.has(taskId)) {
+                completedTasks.add(taskId);
+                const formData = new FormData();
+                formData.append('userId', userId);
+                formData.append('taskName', taskName);
+                formData.append('pointsValue', pointsValue);
+                formData.append('prize', prize || '');
+                formData.append('file', file);
 
-        fetch(SERVER_URL, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                fetch(SERVER_URL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'pending') {
+                        alert('Ожидайте ответа модератора');
+                    } else if (data.status === 'error') {
+                        alert(data.message);
+                        completedTasks.delete(taskId); // Разрешаем повторную попытку
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error details:', error);
+                    alert(`Ошибка при отправке файла, попробуйте снова: ${error.message}`);
+                    completedTasks.delete(taskId); // Разрешаем повторную попытку при ошибке
+                });
+            } else {
+                alert('Задание уже выполнено!');
             }
-            return response.json();
-        })
-        .then(data => {
-            if (data.status === 'pending') {
-                alert(`Файл для "${taskName}" отправлен модератору на проверку.`);
-            } else if (data.status === 'error') {
-                alert(data.message || 'Ошибка при обработке задания.');
-                completedTasks.delete(taskId); // Разрешаем повторную попытку
-            }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error); // Для отладки в консоли браузера
-            alert(`Ошибка при отправке файла, попробуйте снова: ${error.message}`);
-        });
-    } else {
-        alert('Задание уже выполнено или файл не выбран!');
-    }
-}
+        }
 
         function updateLeaderboard() {
             const leaderboard = document.getElementById('leaderboard');
