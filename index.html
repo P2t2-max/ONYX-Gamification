@@ -123,39 +123,44 @@
             }
         }
 
-        function submitTask(taskId, pointsValue, taskName, prize = null) {
-            const fileInput = document.getElementById(taskId);
-            if (fileInput.files.length > 0 && !completedTasks.has(taskId)) {
-                completedTasks.add(taskId);
-                const file = fileInput.files[0];
-                const formData = new FormData();
-                formData.append('userId', userId);
-                formData.append('taskName', taskName);
-                formData.append('pointsValue', pointsValue);
-                formData.append('prize', prize || '');
-                formData.append('file', file);
+       function submitTask(taskId, pointsValue, taskName, prize = null) {
+    const fileInput = document.getElementById(taskId);
+    if (fileInput.files.length > 0 && !completedTasks.has(taskId)) {
+        completedTasks.add(taskId);
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('userId', userId);
+        formData.append('taskName', taskName);
+        formData.append('pointsValue', pointsValue);
+        formData.append('prize', prize || '');
+        formData.append('file', file);
 
-                fetch(SERVER_URL, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.status === 'pending') {
-                        alert(`Файл для "${taskName}" отправлен модератору на проверку.`);
-                    } else if (data.status === 'error') {
-                        alert(data.message || 'Ошибка при обработке задания.');
-                        completedTasks.delete(taskId); // Разрешаем повторную попытку
-                    }
-                })
-                .catch(error => alert(`Ошибка при отправке файла, попробуйте снова: ${error.message}`));
-            } else {
-                alert('Задание уже выполнено или файл не выбран!');
+        fetch(SERVER_URL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
-        }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'pending') {
+                alert(`Файл для "${taskName}" отправлен модератору на проверку.`);
+            } else if (data.status === 'error') {
+                alert(data.message || 'Ошибка при обработке задания.');
+                completedTasks.delete(taskId); // Разрешаем повторную попытку
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error); // Для отладки в консоли браузера
+            alert(`Ошибка при отправке файла, попробуйте снова: ${error.message}`);
+        });
+    } else {
+        alert('Задание уже выполнено или файл не выбран!');
+    }
+}
 
         function updateLeaderboard() {
             const leaderboard = document.getElementById('leaderboard');
