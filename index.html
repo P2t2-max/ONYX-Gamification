@@ -21,9 +21,7 @@
         .task button { background-color: #2ecc71; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.3s ease; }
         .task button:hover { background-color: #27ae60; }
         .task button:disabled { background-color: #bdc3c7; cursor: not-allowed; }
-        .balance h3, .gifts h3 { font-size: 20px; margin: 0 0 10px; color: #2c3e50; }
-        .gifts ul { list-style: none; padding: 0; }
-        .gifts li { padding: 10px; border-bottom: 1px solid #ecf0f1; }
+        .balance h3 { font-size: 20px; margin: 0 0 10px; color: #2c3e50; }
         .referral { margin: 20px 0; padding: 15px; background-color: #e8f4f8; border-radius: 10px; }
         .referral h3 { font-size: 20px; margin: 0 0 10px; }
         .referral button { background-color: #3498db; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
@@ -74,10 +72,6 @@
                 <p>Airpods 3 — 10 000+ баллов</p>
                 <button onclick="buyPrize('Airpods 3', 10000)">Купить</button>
             </div>
-            <div class="section gifts">
-                <h3>Мои подарки</h3>
-                <ul id="giftsList"></ul>
-            </div>
         </div>
 
         <div class="section task-level" id="level1" onclick="showLevel('level1')">
@@ -98,31 +92,31 @@
 
         <div id="level1-tasks" class="section hidden">
             <h2>🟢 Level 1 — Новичок</h2>
-            <div class="task"><input type="file" id="task1-1" accept="image/*,video/*"><button onclick="submitTask('task1-1', 50, 'Подписка на Telegram/Instagram')">Приложить файл</button> Подпишись на Telegram и Instagram ONYX — 50 баллов</div>
-            <div class="task"><input type="file" id="task1-2" accept="image/*,video/*"><button onclick="submitTask('task1-2', 100, 'Покупка')">Приложить файл</button> Оформи покупку на любую сумму — 100 баллов</div>
-            <div class="task"><input type="file" id="task1-3" accept="image/*,video/*"><button onclick="submitTask('task1-3', 100, 'Отзыв')">Приложить файл</button> Оставь отзыв на 2ГИС или Яндекс — 100 баллов</div>
-            <div class="task"><input type="file" id="task1-4" accept="image/*,video/*"><button onclick="submitTask('task1-4', 150, 'Сторис')">Приложить файл</button> Отметь ONYX в сторис whatsapp/Instagram/telegram на выбор, с покупкой — 150 баллов</div>
-            <div class="task"><input type="file" id="task1-5" accept="image/*,video/*"><button onclick="submitTask('task1-5', 70, 'Викторина')">Приложить файл</button> Участвуй в викторине в Telegram — 70 баллов</div>
+            <div class="task"><input type="file" id="task1-1" accept="image/*,video/*"><button onclick="submitTask('task1-1', 50, 'Подписка на Telegram/Instagram', isLocked())">Приложить файл</button> Подпишись на Telegram и Instagram ONYX — 50 баллов</div>
+            <div class="task"><input type="file" id="task1-2" accept="image/*,video/*"><button onclick="submitTask('task1-2', 100, 'Покупка', isLocked())">Приложить файл</button> Оформи покупку на любую сумму — 100 баллов</div>
+            <div class="task"><input type="file" id="task1-3" accept="image/*,video/*"><button onclick="submitTask('task1-3', 100, 'Отзыв', isLocked())">Приложить файл</button> Оставь отзыв на 2ГИС или Яндекс — 100 баллов</div>
+            <div class="task"><input type="file" id="task1-4" accept="image/*,video/*"><button onclick="submitTask('task1-4', 150, 'Сторис', isLocked())">Приложить файл</button> Отметь ONYX в сторис whatsapp/Instagram/telegram на выбор, с покупкой — 150 баллов</div>
+            <div class="task"><input type="file" id="task1-5" accept="image/*,video/*"><button onclick="submitTask('task1-5', 70, 'Викторина', isLocked())">Приложить файл</button> Участвуй в викторине в Telegram — 70 баллов</div>
             <button onclick="backToMain()">Назад</button>
         </div>
 
         <div id="level2-tasks" class="section hidden">
             <h2>🟡 Level 2 — Хастлер</h2>
-            <div class="task"><input type="file" id="task2-1" accept="image/*,video/*"><button onclick="submitTask('task2-1', 300, 'Реферал')">Приложить файл</button> Приведи друга по реферальной ссылке 10 максимум — 300 баллов</div>
-            <div class="task"><input type="file" id="task2-2" accept="image/*,video/*"><button onclick="submitTask('task2-2', 300, 'Трейд-ин')">Приложить файл</button> Принеси старый смартфон на трейд-ин — 300 баллов</div>
-            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-3', 400, 'Обзор')">Приложить файл</button> Сними короткий обзор на технику из ONYX — 400 баллов</div>
-            <div class="task"><input type="file" id="task2-4" accept="image/*,video/*"><button onclick="submitTask('task2-4', 500, 'Мини-обзор')">Приложить файл</button> Сделай мини-обзор из магазина reels/tiktok/пост инст трэдс — 500 баллов</div>
-            <div class="task"><input type="file" id="task2-5" accept="image/*,video/*"><button onclick="submitTask('task2-5', 500, 'Статья')">Приложить файл</button> Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте — 500 баллов</div>
+            <div class="task"><input type="file" id="task2-1" accept="image/*,video/*"><button onclick="submitTask('task2-1', 300, 'Реферал', isLocked('level1'))">Приложить файл</button> Приведи друга по реферальной ссылке 10 максимум — 300 баллов</div>
+            <div class="task"><input type="file" id="task2-2" accept="image/*,video/*"><button onclick="submitTask('task2-2', 300, 'Трейд-ин', isLocked('level1'))">Приложить файл</button> Принеси старый смартфон на трейд-ин — 300 баллов</div>
+            <div class="task"><input type="file" id="task2-3" accept="image/*,video/*"><button onclick="submitTask('task2-3', 400, 'Обзор', isLocked('level1'))">Приложить файл</button> Сними короткий обзор на технику из ONYX — 400 баллов</div>
+            <div class="task"><input type="file" id="task2-4" accept="image/*,video/*"><button onclick="submitTask('task2-4', 500, 'Мини-обзор', isLocked('level1'))">Приложить файл</button> Сделай мини-обзор из магазина reels/tiktok/пост инст трэдс — 500 баллов</div>
+            <div class="task"><input type="file" id="task2-5" accept="image/*,video/*"><button onclick="submitTask('task2-5', 500, 'Статья', isLocked('level1'))">Приложить файл</button> Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте — 500 баллов</div>
             <button onclick="backToMain()">Назад</button>
         </div>
 
         <div id="level3-tasks" class="section hidden">
             <h2>🔵 Level 3 — Резидент ONYX</h2>
-            <div class="task"><input type="file" id="task3-1" accept="image/*,video/*"><button onclick="submitTask('task3-1', 600, 'Reels')">Приложить файл</button> Reels с сюжетом про выбор техники — 600 баллов</div>
-            <div class="task"><input type="file" id="task3-2" accept="image/*,video/*"><button onclick="submitTask('task3-2', 800, '5 рефералов')">Приложить файл</button> 5 рефералов с активностью которые дошли до 3 уровня — 800 баллов</div>
-            <div class="task"><input type="file" id="task3-3" accept="image/*,video/*"><button onclick="submitTask('task3-3', 1000, 'Вирусный TikTok/Reels')">Приложить файл</button> Вирусный TikTok/Reels (10к+ просмотров) — 1000 баллов</div>
-            <div class="task"><input type="file" id="task3-4" accept="image/*,video/*"><button onclick="submitTask('task3-4', 1200, 'Уличная реклама')">Приложить файл</button> Упоминание ONYX в уличной креативной рекламе снять видео и выложить reels/tiktok — 1200 баллов</div>
-            <div class="task"><input type="file" id="task3-5" accept="image/*,video/*"><button onclick="submitTask('task3-5', 1500, 'Публичная реклама')">Приложить файл</button> Сделай публичную, креативную рекламу ONYX в общественном месте — 1500 баллов</div>
+            <div class="task"><input type="file" id="task3-1" accept="image/*,video/*"><button onclick="submitTask('task3-1', 600, 'Reels', isLocked('level2'))">Приложить файл</button> Reels с сюжетом про выбор техники — 600 баллов</div>
+            <div class="task"><input type="file" id="task3-2" accept="image/*,video/*"><button onclick="submitTask('task3-2', 800, '5 рефералов', isLocked('level2'))">Приложить файл</button> 5 рефералов с активностью которые дошли до 3 уровня — 800 баллов</div>
+            <div class="task"><input type="file" id="task3-3" accept="image/*,video/*"><button onclick="submitTask('task3-3', 1000, 'Вирусный TikTok/Reels', isLocked('level2'))">Приложить файл</button> Вирусный TikTok/Reels (10к+ просмотров) — 1000 баллов</div>
+            <div class="task"><input type="file" id="task3-4" accept="image/*,video/*"><button onclick="submitTask('task3-4', 1200, 'Уличная реклама', isLocked('level2'))">Приложить файл</button> Упоминание ONYX в уличной креативной рекламе снять видео и выложить reels/tiktok — 1200 баллов</div>
+            <div class="task"><input type="file" id="task3-5" accept="image/*,video/*"><button onclick="submitTask('task3-5', 1500, 'Публичная реклама', isLocked('level2'))">Приложить файл</button> Сделай публичную, креативную рекламу ONYX в общественном месте — 1500 баллов</div>
             <button onclick="backToMain()">Назад</button>
         </div>
 
@@ -150,7 +144,6 @@
         let referralsCount = 0;
         let maxReferrals = 10;
         const completedTasks = new Set();
-        const gifts = new Set();
         const SERVER_URL = 'https://9fb0995630cd.ngrok-free.app/submit'; // Замени на свой ngrok URL
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -158,16 +151,21 @@
             tg.ready();
             tg.expand();
             userId = tg.initDataUnsafe?.user?.id || `guest_${Math.floor(Math.random() * 1000000)}`;
-            document.getElementById('referralLink').textContent = `https://t.me/bot?start=ref_${userId}`;
+            document.getElementById('referralLink').textContent = `https://t.me/YourBotName?start=ref_${userId}`; // Замени YourBotName на имя бота
             document.getElementById('referralsCount').textContent = referralsCount;
             document.getElementById('points').textContent = points;
             document.getElementById('bonusPoints').textContent = bonusPoints;
-            updateGifts();
         });
 
         function showLevel(level) {
             document.querySelectorAll('.task-level').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`${level}-tasks`).classList.remove('hidden');
+            const tasksDiv = document.getElementById(`${level}-tasks`);
+            tasksDiv.classList.remove('hidden');
+            if (level === 'level4' || level === 'srank') {
+                tasksDiv.querySelectorAll('button').forEach(btn => btn.disabled = false);
+            } else if (level !== 'level1' && !allTasksCompleted(`level${parseInt(level.slice(-1)) - 1}`)) {
+                tasksDiv.querySelectorAll('button').forEach(btn => btn.disabled = true);
+            }
         }
 
         function backToMain() {
@@ -175,9 +173,26 @@
             document.querySelectorAll('.section.hidden').forEach(el => el.classList.add('hidden'));
         }
 
-        function submitTask(taskId, pointsValue, taskName, prize = null) {
+        function allTasksCompleted(levelPrefix) {
+            const tasks = document.querySelectorAll(`#${levelPrefix}-tasks .task button`);
+            return Array.from(tasks).every(btn => completedTasks.has(btn.parentElement.querySelector('input').id));
+        }
+
+        function isLocked(prevLevel) {
+            if (prevLevel && prevLevel !== 'level1' && !allTasksCompleted(prevLevel)) {
+                return true;
+            }
+            return false;
+        }
+
+        function submitTask(taskId, pointsValue, taskName, prize = null, isLocked = false) {
             const fileInput = document.getElementById(taskId);
             const file = fileInput.files ? fileInput.files[0] : null;
+            const button = document.querySelector(`#${taskId}`).nextElementSibling;
+            if (isLocked) {
+                button.disabled = true;
+                return;
+            }
             if (!file) {
                 alert('Сначала нужно приложить файл');
                 return;
@@ -220,7 +235,7 @@
         }
 
         function shareReferral() {
-            Telegram.WebApp.shareUrl(`https://t.me/bot?start=ref_${userId}`, 'Приглашаю в ONYX: Вызов принят!');
+            Telegram.WebApp.shareUrl(`https://t.me/YourBotName?start=ref_${userId}`, 'Приглашаю в ONYX: Вызов принят!');
         }
 
         function buyPrize(prizeName, cost) {
@@ -230,24 +245,19 @@
                 gifts.add(prizeName);
                 updateGifts();
                 alert(`Вы купили "${prizeName}" за ${cost} баллов!`);
+                // Отправка уведомления модератору
+                fetch(SERVER_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'purchase', userId, prizeName }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
             } else {
                 alert('Недостаточно баллов для покупки!');
             }
         }
 
-        function updateGifts() {
-            const giftsList = document.getElementById('giftsList');
-            giftsList.innerHTML = '';
-            if (gifts.size === 0) {
-                giftsList.innerHTML = '<li>У вас пока нет подарков</li>';
-            } else {
-                gifts.forEach(gift => {
-                    const li = document.createElement('li');
-                    li.textContent = gift;
-                    li.className = 'gift-item';
-                    giftsList.appendChild(li);
-                });
-            }
+        function updateBonusPoints() {
+            document.getElementById('bonusPoints').textContent = bonusPoints;
         }
     </script>
 </body>
