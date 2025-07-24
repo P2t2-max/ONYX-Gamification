@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ONYX: Вызов принят</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
@@ -14,7 +14,7 @@
             color: #1E3A8A;
             margin: 0;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
         }
         header {
@@ -32,12 +32,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
         h1 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 32px;
             font-weight: 700;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: #FFD700; /* Золотой цвет для заголовка */
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         h2 {
@@ -70,14 +71,15 @@
             font-weight: 500;
             font-size: 16px;
             display: flex;
-            flex-direction: column; /* Изменено на column по умолчанию для мобильных, чтобы кнопка не уезжала */
+            flex-direction: column;
             gap: 15px;
             transition: background-color 0.3s;
-            word-break: break-word; /* Текст не выходит за края */
+            word-break: break-word;
+            hyphens: auto;
         }
         @media (min-width: 600px) {
             .task, .prize {
-                flex-direction: row; /* На десктопе - row */
+                flex-direction: row;
                 align-items: center;
             }
         }
@@ -101,7 +103,8 @@
             font-size: 15px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
-            align-self: flex-start; /* Кнопка слева */
+            align-self: flex-start;
+            white-space: nowrap;
         }
         button:hover {
             background: linear-gradient(90deg, #152B6A, #1E3A8A);
@@ -155,12 +158,96 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
             animation: pulse 2s infinite;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Добавлена тень для текста баллов, чтобы не сливался */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Улучшена читаемость текста */
         }
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+        }
+        /* Призовая система */
+        .prize {
+            text-align: center;
+        }
+        .prize p {
+            margin: 0;
+        }
+        .prize .points {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #1E3A8A;
+            margin-bottom: 5px;
+        }
+        .prize .points-label {
+            font-size: 20px;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+        .prize .prize-text {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 400;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        /* Цвета для уровней */
+        #level1 .nav-buttons button:nth-child(1),
+        #level1 h2 {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+        }
+        #level2 .nav-buttons button:nth-child(2),
+        #level2 h2 {
+            background-color: #FFC107;
+            color: #FFFFFF;
+        }
+        #level3 .nav-buttons button:nth-child(3),
+        #level3 h2 {
+            background-color: #2196F3;
+            color: #FFFFFF;
+        }
+        #level4 .nav-buttons button:nth-child(4),
+        #level4 h2 {
+            background-color: #F44336;
+            color: #FFFFFF;
+        }
+        #s-rank .nav-buttons button:nth-child(5),
+        #s-rank h2 {
+            background-color: #9C27B0;
+            color: #FFFFFF;
+        }
+        @media (max-width: 600px) {
+            .task {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .task p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            button {
+                width: 100%;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            p, span {
+                font-size: 14px;
+            }
+            .prize .points {
+                font-size: 30px;
+            }
+            .prize .points-label {
+                font-size: 16px;
+            }
+            .prize .prize-text {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -182,27 +269,27 @@
         <h2>🎁 Призовая система</h2>
         <div class="prize">
             <i class="fas fa-gift"></i>
-            <p>500 баллов — Плёнка, кабель, чехол</p>
+            <p><span class="points">500</span><br><span class="points-label">баллов</span><br><span class="prize-text">Плёнка, кабель, чехол</span></p>
             <button onclick="buyPrize('Плёнка, кабель, чехол', 500)">Купить</button>
         </div>
         <div class="prize">
             <i class="fas fa-gift"></i>
-            <p>2000 баллов — Сертификат на 2000 рублей</p>
+            <p><span class="points">2000</span><br><span class="points-label">баллов</span><br><span class="prize-text">Сертификат на 2000 рублей</span></p>
             <button onclick="buyPrize('Сертификат на 2000 рублей', 2000)">Купить</button>
         </div>
         <div class="prize">
             <i class="fas fa-gift"></i>
-            <p>5000 баллов — Зарядка, пауэрбанк, брелок ONYX, Dyson набор</p>
+            <p><span class="points">5000</span><br><span class="points-label">баллов</span><br><span class="prize-text">Зарядка, пауэрбанк, брелок ONYX, Dyson набор</span></p>
             <button onclick="buyPrize('Зарядка, пауэрбанк, брелок ONYX, Dyson набор', 5000)">Купить</button>
         </div>
         <div class="prize">
             <i class="fas fa-gift"></i>
-            <p>8000 баллов — Сертификат 5000 рублей</p>
+            <p><span class="points">8000</span><br><span class="points-label">баллов</span><br><span class="prize-text">Сертификат 5000 рублей</span></p>
             <button onclick="buyPrize('Сертификат 5000 рублей', 8000)">Купить</button>
         </div>
         <div class="prize">
             <i class="fas fa-gift"></i>
-            <p>10 000+ баллов — Airpods 3</p>
+            <p><span class="points">10000</span><br><span class="points-label">баллов</span><br><span class="prize-text">Airpods 3</span></p>
             <button onclick="buyPrize('Airpods 3', 10000)">Купить</button>
         </div>
     </section>
@@ -291,7 +378,7 @@
             <div class="task">
                 <i class="fas fa-pen-fancy"></i>
                 <p>Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте — 500 баллов</p>
-                <button onclick="submitTask('Напиши статья/отзыв в Дзен/инст/вк пост о своём опыте', 500, '', 'file2-5')">Приложить файл</button>
+                <button onclick="submitTask('Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте', 500, '', 'file2-5')">Приложить файл</button>
             </div>
             <input type="file" id="file2-5" style="display:none;">
 
