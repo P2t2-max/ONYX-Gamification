@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ONYX: Вызов принят</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
             color: #1E3A8A;
             margin: 0;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.8; /* Увеличена линия для лучшей читаемости */
             overflow-x: hidden;
         }
         header {
@@ -68,11 +68,18 @@
             box-shadow: 0 4px 10px rgba(30, 58, 138, 0.1);
             color: #1E3A8A;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 18px; /* Увеличен размер шрифта для лучшей читаемости */
             display: flex;
-            align-items: center;
+            flex-direction: column; /* Изменено на column для мобильных, чтобы кнопка не уезжала вправо */
             gap: 15px;
             transition: background-color 0.3s;
+            text-align: left;
+        }
+        @media (min-width: 768px) {
+            .task, .prize {
+                flex-direction: row; /* Для десктопа - row */
+                align-items: center;
+            }
         }
         .task:hover, .prize:hover {
             background-color: #E6F0FA;
@@ -93,6 +100,8 @@
             font-size: 15px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
+            width: auto; /* Кнопка не растягивается на всю ширину */
+            align-self: flex-start; /* Кнопка слева на мобильных */
         }
         button:hover {
             background: linear-gradient(90deg, #152B6A, #1E3A8A);
@@ -120,150 +129,9 @@
         p, span {
             color: #1E3A8A;
             font-weight: 500;
-            font-size: 16px;
-        }
-        .nav-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20 First, the user says: "сделай в файле просто" which is Russian for "make it in the file simply". This seems to be referring to the index.html file for ONYX, and "for all tasks" from the previous message.
-
-The current question is: "сделай в файле просто", which might be a continuation.
-
-Looking at the conversation history, the user wants the full index.html with icons for all tasks.
-
-I need to provide the full HTML code with all levels expanded, adding appropriate Font Awesome icons to each task for beauty.
-
-No tools are needed, as this is just code generation.
-
-The final response should be the full HTML.
-
-The user said "сделай в файле просто", perhaps meaning "make it simple in the file", but in context, it's to complete the code for all tasks.
-
-I'll generate the full code with icons for every task in all levels.```html
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONYX: Вызов принят</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #FFFFFF, #E6F0FA);
-            color: #1E3A8A;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        header {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #1E3A8A, #2A5BA0);
-            color: #FFFFFF;
-            border-radius: 20px;
-            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
-            margin-bottom: 30px;
-            animation: fadeIn 1s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1E3A8A;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        section {
-            margin-bottom: 30px;
-            padding: 25px;
-            background-color: #D1E8E2;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        section:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.2);
-        }
-        .task, .prize {
-            margin: 15px 0;
-            padding: 20px;
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.1);
-            color: #1E3A8A;
-            font-weight: 500;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: background-color 0.3s;
-        }
-        .task:hover, .prize:hover {
-            background-color: #E6F0FA;
-        }
-        .task i, .prize i {
-            font-size: 24px;
-            color: #1E3A8A;
-        }
-        button {
-            background: linear-gradient(90deg, #1E3A8A, #2A5BA0);
-            color: #FFFFFF;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
-        }
-        button:hover {
-            background: linear-gradient(90deg, #152B6A, #1E3A8A);
-            transform: scale(1.08);
-            box-shadow: 0 6px 15px rgba(30, 58, 138, 0.4);
-        }
-        input[type="file"] {
-            display: none;
-        }
-        .level {
-            display: none;
-        }
-        .show {
-            display: block;
-        }
-        #refLink {
-            color: #1E3A8A;
-            font-weight: 600;
-            font-size: 16px;
-            background-color: #E6F0FA;
-            padding: 8px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        p, span {
-            color: #1E3A8A;
-            font-weight: 500;
-            font-size: 16px;
+            font-size: 18px; /* Увеличен размер шрифта для лучшей читаемости */
+            max-width: 100%; /* Текст не выходит за экран */
+            word-wrap: break-word;
         }
         .nav-buttons {
             display: grid;
@@ -353,32 +221,497 @@ I'll generate the full code with icons for every task in all levels.```html
             <div class="task">
                 <i class="fas fa-bell"></i>
                 <p>Подпишись на Telegram и Instagram ONYX — 50 баллов</p>
-                <input type="file" id="file1-1" style="display:none;">
                 <button onclick="submitTask('Подпишись на Telegram и Instagram ONYX', 50, '', 'file1-1')">Приложить файл</button>
+            </div>
+            <input type="file" id="file1-1" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Оформи покупку на любую сумму — 100 баллов</p>
+                <button onclick="submitTask('Оформи покупку на любую сумму', 100, '', 'file1-2')">Приложить файл</button>
+            </div>
+            <input type="file" id="file1-2" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-comment-dots"></i>
+                <p>Оставь отзыв на 2ГИС или Яндекс — 100 баллов</p>
+                <button onclick="submitTask('Оставь отзыв на 2ГИС или Яндекс', 100, '', 'file1-3')">Приложить файл</button>
+            </div>
+            <input type="file" id="file1-3" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-camera"></i>
+                <p>Отметь ONYX в сторис whatsapp/Instagram/telegram на выбор, с покупкой — 150 баллов</p>
+                <button onclick="submitTask('Отметь ONYX в сторис с покупкой', 150, '', 'file1-4')">Приложить файл</button>
+            </div>
+            <input type="file" id="file1-4" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-question-circle"></i>
+                <p>Участвуй в викторине в Telegram — 70 баллов</p>
+                <button onclick="submitTask('Участвуй в викторине в Telegram', 70, '', 'file1-5')">Приложить файл</button>
+            </div>
+            <input type="file" id="file1-5" style="display:none;">
+
+            <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
+        </section>
+
+        <section id="level2" class="level">
+            <h2>🟡 Level 2 — Хастлер</h2>
+            <div class="task">
+                <i class="fas fa-user-friends"></i>
+                <p>Приведи друга по реферальной ссылке 10 максимум — 300 баллов</p>
+                <button onclick="submitTask('Приведи друга по реферальной ссылке', 300, '', 'file2-1')">Приложить файл</button>
+            </div>
+            <input type="file" id="file2-1" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-exchange-alt"></i>
+                <p>Принеси старый смартфон на трейд-ин — 300 баллов</p>
+                <button onclick="submitTask('Принеси старый смартфон на трейд-ин', 300, '', 'file2-2')">Приложить файл</button>
+            </div>
+            <input type="file" id="file2-2" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-video"></i>
+                <p>Сними короткий обзор на технику из ONYX — 400 баллов</p>
+                <button onclick="submitTask('Сними короткий обзор на технику из ONYX', 400, '', 'file2-3')">Приложить файл</button>
+            </div>
+            <input type="file" id="file2-3" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-film"></i>
+                <p>Сделай мини-обзор из магазина reels/tiktok/пост инст трэдс — 500 баллов</p>
+                <button onclick="submitTask('Сделай мини-обзор из магазина', 500, '', 'file2-4')">Приложить файл</button>
+            </div>
+            <input type="file" id="file2-4" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-pen-fancy"></i>
+                <p>Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте — 500 баллов</p>
+                <button onclick="submitTask('Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте', 500, '', 'file2-5')">Приложить файл</button>
+            </div>
+            <input type="file" id="file2-5" style="display:none;">
+
+            <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
+        </section>
+
+        <section id="level3" class="level">
+            <h2>🔵 Level 3 — Резидент ONYX</h2>
+            <div class="task">
+                <i class="fas fa-film"></i>
+                <p>Reels с сюжетом про выбор техники — 600 баллов</p>
+                <button onclick="submitTask('Reels с сюжетом про выбор техники', 600, '', 'file3-1')">Приложить файл</button>
+            </div>
+            <input type="file" id="file3-1" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-users"></i>
+                <p>5 рефералов с активностью которые дошли до 3 уровня — 800 баллов</p>
+                <button onclick="submitTask('5 рефералов с активностью которые дошли до 3 уровня', 800, '', 'file3-2')">Приложить файл</button>
+            </div>
+            <input type="file" id="file3-2" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-virus"></i>
+                <p>Вирусный TikTok/Reels (10к+ просмотров) — 1000 баллов</p>
+                <button onclick="submitTask('Вирусный TikTok/Reels (10к+ просмотров)', 1000, '', 'file3-3')">Приложить файл</button>
+            </div>
+            <input type="file" id="file3-3" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-bullhorn"></i>
+                <p>Упоминание ONYX в уличной креативной рекламе снять видео и выложить reels/tiktok — 1200 баллов</p>
+                <button onclick="submitTask('Упоминание ONYX в уличной креативной рекламе снять видео и выложить reels/tiktok', 1200, '', 'file3-4')">Приложить файл</button>
+            </div>
+            <input type="file" id="file3-4" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-ad"></i>
+                <p>Сделай публичную, креативную рекламу ONYX в общественном месте — 1500 баллов</p>
+                <button onclick="submitTask('Сделай публичную, креативную рекламу ONYX в общественном месте', 1500, '', 'file3-5')">Приложить файл</button>
+            </div>
+            <input type="file" id="file3-5" style="display:none;">
+
+            <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
+        </section>
+
+        <section id="level4" class="level">
+            <h2>🔴 Level 4 — Безбашенный</h2>
+            <div class="task">
+                <i class="fas fa-parachute-box"></i>
+                <p>Прыжок с парашютом с мерчом ONYX и Apple Watch и открой в процессе прыжка (уточнить в магазине)— Apple Watch или Airpods</p>
+                <button onclick="submitTask('Прыжок с парашютом с мерчом ONYX и Apple Watch и открой в процессе прыжка (уточнить в магазине)', 0, 'Apple Watch или Airpods', 'file4-1')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-1" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-mountain"></i>
+                <p>Забраться на гору с флагом ONYX (уточнять в магазине)— MacBook (за 5000 метров и более)</p>
+                <button onclick="submitTask('Забраться на гору с флагом ONYX (уточнять в магазине)', 0, 'MacBook (за 5000 метров и более)', 'file4-2')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-2" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-tattoo"></i> <!-- Custom icon if needed, but fa-tattoo not standard, use fa-tint or similar -->
+                <p>Настоящая тату с логотипом ONYX (от 3 см, не временная). Желательно — на видимом участке. Видео процесса + мотивация. — AirPods</p>
+                <button onclick="submitTask('Настоящая тату с логотипом ONYX (от 3 см, не временная). Желательно — на видимом участке. Видео процесса + мотивация.', 0, 'AirPods', 'file4-3')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-3" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-car"></i>
+                <p>Переклей машину в цвета и логотипы ONYX и сними креативный рилс об этом и продержи винил полгода (уточнять в магазине)— призы на 10 000 ₽</p>
+                <button onclick="submitTask('Переклей машину в цвета и логотипы ONYX и сними креативный рилс об этом и продержи винил полгода (уточнять в магазине)', 0, 'призы на 10 000 ₽', 'file4-4')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-4" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-eye"></i>
+                <p>1 000 000 просмотров с техникой ONYX — любой приз по выбору</p>
+                <button onclick="submitTask('1 000 000 просмотров с техникой ONYX', 0, 'любой приз по выбору', 'file4-5')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-5" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-running"></i>
+                <p>Бегом на 10 км в костюме ONYX по центральным улицам города, с табличкой «Я иду за айфоном в ONYX». Съёмка + отчёт. - AirPods</p>
+                <button onclick="submitTask('Бегом на 10 км в костюме ONYX по центральным улицам города, с табличкой «Я иду за айфоном в ONYX». Съёмка + отчёт.', 0, 'AirPods', 'file4-6')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-6" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-search"></i>
+                <p>Проведи сутки в людном месте с коробкой от iPhone и табличкой «Ищу любовь и технику в ONYX». Всё — на камеру. - Apple Watch</p>
+                <button onclick="submitTask('Проведи сутки в людном месте с коробкой от iPhone и табличкой «Ищу любовь и технику в ONYX». Всё — на камеру.', 0, 'Apple Watch', 'file4-7')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-7" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-video"></i>
+                <p>Снимите видеоклип/трюк с техникой ONYX. Эпичность и стиль — ключ. - Приз определяется по предварительному согласованию в магазине.</p>
+                <button onclick="submitTask('Снимите видеоклип/трюк с техникой ONYX. Эпичность и стиль — ключ.', 0, 'Приз определяется по предварительному согласованию в магазине.', 'file4-8')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-8" style="display:none;">
+
+            <div class="task">
+                <i class="fas fa-mask"></i>
+                <p>Проведи день в косплее «персонажа ONYX» — максимально креативно и дерзко: робот, хакер, агент Apple и т.п. Общайся с людьми, раздавай флаеры. - фирменный комбо-набор ONYX + участие в съёмке промо-ролика</p>
+                <button onclick="submitTask('Проведи день в косплее «персонажа ONYX» — максимально креативно и дерзко: робот, хакер, агент Apple и т.п. Общайся с людьми, раздавай флаеры.', 0, 'фирменный комбо-набор ONYX + участие в съёмке промо-ролика', 'file4-9')">Приложить файл</button>
+            </div>
+            <input type="file" id="file4-9" style="display:none;">
+
+            <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
+        </section>
+
+        <section id="s-rank" class="level">
+            <h2> First, the user is reporting an issue with the mini app in Telegram on phone: the "Приложить файл" button has shifted to the right, and the text is not readable properly.
+
+I need to fix the index.html code.
+
+From the previous code, the design is responsive, but perhaps the flex display in .task is causing the button to shift.
+
+To fix:
+- For the button shifting right: In .task, the display: flex; align-items: center; gap: 15px; — the button might be pushed if the p text is long. I can use flex-wrap or adjust the layout.
+
+- For text readability: Ensure font sizes, line-height, and colors are good. Add word-break or hyphens for long words.
+
+The user says "кнопка приложить файл уехала вправо" — button "Приложить файл" shifted to the right.
+
+"текст чтобы норм читался он не читается толком" — text to be normally readable, it's not readable properly.
+
+Perhaps on mobile, text wraps badly or overflows.
+
+To fix:
+- Add word-break: break-word; to p in .task.
+- Make .task flex-direction: column on mobile with media query for better layout.
+
+Add media query for mobile.
+
+Since it's Telegram Mini App, it's already mobile-optimized, but add @media (max-width: 600px) {
+  .task {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+For text, increase line-height or font-size on mobile.
+
+The code uses Font Awesome, so ensure it's loaded.
+
+The response should be the fixed index.html code.```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONYX: Вызов принят</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #FFFFFF, #E6F0FA);
+            color: #1E3A8A;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #1E3A8A, #2A5BA0);
+            color: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1E3A8A;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: #D1E8E2;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.2);
+        }
+        .task, .prize {
+            margin: 15px 0;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.1);
+            color: #1E3A8A;
+            font-weight: 500;
+            font-size: 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+            transition: background-color 0.3s;
+            word-break: break-word; /* Исправление для читаемости текста на мобильных */
+            hyphens: auto;
+        }
+        .task:hover, .prize:hover {
+            background-color: #E6F0FA;
+        }
+        .task i, .prize i {
+            font-size: 24px;
+            color: #1E3A8A;
+            flex-shrink: 0;
+        }
+        .task p {
+            flex-grow: 1;
+            margin: 0;
+        }
+        button {
+            background: linear-gradient(90deg, #1E3A8A, #2A5BA0);
+            color: #FFFFFF;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
+            white-space: nowrap; /* Кнопка не переносится */
+            flex-shrink: 0;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #152B6A, #1E3A8A);
+            transform: scale(1.08);
+            box-shadow: 0 6px 15px rgba(30, 58, 138, 0.4);
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .level {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+        #refLink {
+            color: #1E3A8A;
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #E6F0FA;
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            word-break: break-all; /* Для длинных ссылок */
+        }
+        p, span {
+            color: #1E3A8A;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .nav-buttons button {
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 15px;
+        }
+        #points {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFFFFF;
+            background-color: #1E3A8A;
+            padding: 8px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 600px) {
+            .task {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .task p {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            button {
+                width: 100%; /* Кнопка на всю ширину на мобильных */
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            p, span {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ONYX: Вызов принят</h1>
+        <p>Ваши баллы: <span id="points">0</span></p>
+    </header>
+
+    <section id="referral">
+        <h2>Реферальная система</h2>
+        <p>Приглашайте друзей и зарабатывайте 300 баллов за каждого (максимум 10 друзей).</p>
+        <p>Ваша реферальная ссылка: <span id="refLink"></span></p>
+        <button onclick="shareRef()"><i class="fas fa-share-alt"></i> Поделиться ссылкой</button>
+        <p>Приглашено друзей: <span id="refCount">0</span></p>
+    </section>
+
+    <section id="shop">
+        <h2>🎁 Призовая система</h2>
+        <div class="prize">
+            <i class="fas fa-gift"></i>
+            <p>500 баллов — Плёнка, кабель, чехол</p>
+            <button onclick="buyPrize('Плёнка, кабель, чехол', 500)">Купить</button>
+        </div>
+        <div class="prize">
+            <i class="fas fa-gift"></i>
+            <p>2000 баллов — Сертификат на 2000 рублей</p>
+            <button onclick="buyPrize('Сертификат на 2000 рублей', 2000)">Купить</button>
+        </div>
+        <div class="prize">
+            <i class="fas fa-gift"></i>
+            <p>5000 баллов — Зарядка, пауэрбанк, брелок ONYX, Dyson набор</p>
+            <button onclick="buyPrize('Зарядка, пауэрбанк, брелок ONYX, Dyson набор', 5000)">Купить</button>
+        </div>
+        <div class="prize">
+            <i class="fas fa-gift"></i>
+            <p>8000 баллов — Сертификат 5000 рублей</p>
+            <button onclick="buyPrize('Сертификат 5000 рублей', 8000)">Купить</button>
+        </div>
+        <div class="prize">
+            <i class="fas fa-gift"></i>
+            <p>10 000+ баллов — Airpods 3</p>
+            <button onclick="buyPrize('Airpods 3', 10000)">Купить</button>
+        </div>
+    </section>
+
+    <section id="levels">
+        <h2>Уровни</h2>
+        <div class="nav-buttons">
+            <button onclick="showLevel('level1')"><i class="fas fa-star"></i> 🟢 Level 1 — Новичок</button>
+            <button onclick="showLevel('level2')"><i class="fas fa-star-half-alt"></i> 🟡 Level 2 — Хастлер</button>
+            <button onclick="showLevel('level3')"><i class="fas fa-trophy"></i> 🔵 Level 3 — Резидент ONYX</button>
+            <button onclick="showLevel('level4')"><i class="fas fa-rocket"></i> 🔴 Level 4 — Безбашенный</button>
+            <button onclick="showLevel('s-rank')"><i class="fas fa-crown"></i> 🔴 S-Rank — Особенный</button>
+        </div>
+        <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
+
+        <section id="level1" class="level">
+            <h2>🟢 Level 1 — Новичок</h2>
+            <div class="task">
+                <i class="fas fa-bell"></i>
+                <p>Подпишись на Telegram и Instagram ONYX — 50 баллов</p>
+                <button onclick="submitTask('Подпишись на Telegram и Instagram ONYX', 50, '', 'file1-1')">Приложить файл</button>
+                <input type="file" id="file1-1" style="display:none;">
             </div>
             <div class="task">
                 <i class="fas fa-shopping-cart"></i>
                 <p>Оформи покупку на любую сумму — 100 баллов</p>
-                <input type="file" id="file1-2" style="display:none;">
                 <button onclick="submitTask('Оформи покупку на любую сумму', 100, '', 'file1-2')">Приложить файл</button>
+                <input type="file" id="file1-2" style="display:none;">
             </div>
             <div class="task">
                 <i class="fas fa-comment-dots"></i>
                 <p>Оставь отзыв на 2ГИС или Яндекс — 100 баллов</p>
-                <input type="file" id="file1-3" style="display:none;">
                 <button onclick="submitTask('Оставь отзыв на 2ГИС или Яндекс', 100, '', 'file1-3')">Приложить файл</button>
+                <input type="file" id="file1-3" style="display:none;">
             </div>
             <div class="task">
                 <i class="fas fa-camera"></i>
                 <p>Отметь ONYX в сторис whatsapp/Instagram/telegram на выбор, с покупкой — 150 баллов</p>
+                <button onclick="submitTask('Отметь ONYX в сторис whatsapp/Instagram/telegram на выбор, с покупкой', 150, '', 'file1-4')">Приложить файл</button>
                 <input type="file" id="file1-4" style="display:none;">
-                <button onclick="submitTask('Отметь ONYX в сторис с покупкой', 150, '', 'file1-4')">Приложить файл</button>
             </div>
             <div class="task">
                 <i class="fas fa-question-circle"></i>
                 <p>Участвуй в викторине в Telegram — 70 баллов</p>
-                <input type="file" id="file1-5" style="display:none;">
                 <button onclick="submitTask('Участвуй в викторине в Telegram', 70, '', 'file1-5')">Приложить файл</button>
+                <input type="file" id="file1-5" style="display:none;">
             </div>
             <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
         </section>
@@ -388,32 +721,32 @@ I'll generate the full code with icons for every task in all levels.```html
             <div class="task">
                 <i class="fas fa-user-friends"></i>
                 <p>Приведи друга по реферальной ссылке 10 максимум — 300 баллов</p>
+                <button onclick="submitTask('Приведи друга по реферальной ссылке 10 максимум', 300, '', 'file2-1')">Приложить файл</button>
                 <input type="file" id="file2-1" style="display:none;">
-                <button onclick="submitTask('Приведи друга по реферальной ссылке', 300, '', 'file2-1')">Приложить файл</button>
             </div>
             <div class="task">
                 <i class="fas fa-exchange-alt"></i>
                 <p>Принеси старый смартфон на трейд-ин — 300 баллов</p>
-                <input type="file" id="file2-2" style="display:none;">
                 <button onclick="submitTask('Принеси старый смартфон на трейд-ин', 300, '', 'file2-2')">Приложить файл</button>
+                <input type="file" id="file2-2" style="display:none;">
             </div>
             <div class="task">
                 <i class="fas fa-video"></i>
                 <p>Сними короткий обзор на технику из ONYX — 400 баллов</p>
-                <input type="file" id="file2-3" style="display:none;">
                 <button onclick="submitTask('Сними короткий обзор на технику из ONYX', 400, '', 'file2-3')">Приложить файл</button>
+                <input type="file" id="file2-3" style="display:none;">
             </div>
             <div class="task">
                 <i class="fas fa-film"></i>
                 <p>Сделай мини-обзор из магазина reels/tiktok/пост инст трэдс — 500 баллов</p>
+                <button onclick="submitTask('Сделай мини-обзор из магазина reels/tiktok/пост инст трэдс', 500, '', 'file2-4')">Приложить файл</button>
                 <input type="file" id="file2-4" style="display:none;">
-                <button onclick="submitTask('Сделай мини-обзор из магазина', 500, '', 'file2-4')">Приложить файл</button>
             </div>
             <div class="task">
                 <i class="fas fa-pen-fancy"></i>
                 <p>Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте — 500 баллов</p>
-                <input type="file" id="file2-5" style="display:none;">
                 <button onclick="submitTask('Напиши статью/отзыв в Дзен/инст/вк пост о своём опыте', 500, '', 'file2-5')">Приложить файл</button>
+                <input type="file" id="file2-5" style="display:none;">
             </div>
             <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
         </section>
@@ -423,33 +756,38 @@ I'll generate the full code with icons for every task in all levels.```html
             <div class="task">
                 <i class="fas fa-film"></i>
                 <p>Reels с сюжетом про выбор техники — 600 баллов</p>
-                <input type="file" id="file3-1" style="display:none;">
                 <button onclick="submitTask('Reels с сюжетом про выбор техники', 600, '', 'file3-1')">Приложить файл</button>
             </div>
+            <input type="file" id="file3-1" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-users"></i>
                 <p>5 рефералов с активностью которые дошли до 3 уровня — 800 баллов</p>
-                <input type="file" id="file3-2" style="display:none;">
                 <button onclick="submitTask('5 рефералов с активностью которые дошли до 3 уровня', 800, '', 'file3-2')">Приложить файл</button>
             </div>
+            <input type="file" id="file3-2" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-virus"></i>
                 <p>Вирусный TikTok/Reels (10к+ просмотров) — 1000 баллов</p>
-                <input type="file" id="file3-3" style="display:none;">
                 <button onclick="submitTask('Вирусный TikTok/Reels (10к+ просмотров)', 1000, '', 'file3-3')">Приложить файл</button>
             </div>
+            <input type="file" id="file3-3" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-bullhorn"></i>
                 <p>Упоминание ONYX в уличной креативной рекламе снять видео и выложить reels/tiktok — 1200 баллов</p>
-                <input type="file" id="file3-4" style="display:none;">
                 <button onclick="submitTask('Упоминание ONYX в уличной креативной рекламе снять видео и выложить reels/tiktok', 1200, '', 'file3-4')">Приложить файл</button>
             </div>
+            <input type="file" id="file3-4" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-ad"></i>
                 <p>Сделай публичную, креативную рекламу ONYX в общественном месте — 1500 баллов</p>
-                <input type="file" id="file3-5" style="display:none;">
                 <button onclick="submitTask('Сделай публичную, креативную рекламу ONYX в общественном месте', 1500, '', 'file3-5')">Приложить файл</button>
             </div>
+            <input type="file" id="file3-5" style="display:none;">
+
             <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
         </section>
 
@@ -458,57 +796,66 @@ I'll generate the full code with icons for every task in all levels.```html
             <div class="task">
                 <i class="fas fa-parachute-box"></i>
                 <p>Прыжок с парашютом с мерчом ONYX и Apple Watch и открой в процессе прыжка (уточнить в магазине)— Apple Watch или Airpods</p>
-                <input type="file" id="file4-1" style="display:none;">
                 <button onclick="submitTask('Прыжок с парашютом с мерчом ONYX и Apple Watch и открой в процессе прыжка (уточнить в магазине)', 0, 'Apple Watch или Airpods', 'file4-1')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-1" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-mountain"></i>
                 <p>Забраться на гору с флагом ONYX (уточнять в магазине)— MacBook (за 5000 метров и более)</p>
-                <input type="file" id="file4-2" style="display:none;">
                 <button onclick="submitTask('Забраться на гору с флагом ONYX (уточнять в магазине)', 0, 'MacBook (за 5000 метров и более)', 'file4-2')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-2" style="display:none;">
+
             <div class="task">
-                <i class="fas fa-tattoo"></i>
+                <i class="fas fa-tint"></i>  /* Icon for tattoo */
                 <p>Настоящая тату с логотипом ONYX (от 3 см, не временная). Желательно — на видимом участке. Видео процесса + мотивация. — AirPods</p>
-                <input type="file" id="file4-3" style="display:none;">
                 <button onclick="submitTask('Настоящая тату с логотипом ONYX (от 3 см, не временная). Желательно — на видимом участке. Видео процесса + мотивация.', 0, 'AirPods', 'file4-3')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-3" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-car"></i>
                 <p>Переклей машину в цвета и логотипы ONYX и сними креативный рилс об этом и продержи винил полгода (уточнять в магазине)— призы на 10 000 ₽</p>
-                <input type="file" id="file4-4" style="display:none;">
                 <button onclick="submitTask('Переклей машину в цвета и логотипы ONYX и сними креативный рилс об этом и продержи винил полгода (уточнять в магазине)', 0, 'призы на 10 000 ₽', 'file4-4')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-4" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-eye"></i>
                 <p>1 000 000 просмотров с техникой ONYX — любой приз по выбору</p>
-                <input type="file" id="file4-5" style="display:none;">
                 <button onclick="submitTask('1 000 000 просмотров с техникой ONYX', 0, 'любой приз по выбору', 'file4-5')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-5" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-running"></i>
                 <p>Бегом на 10 км в костюме ONYX по центральным улицам города, с табличкой «Я иду за айфоном в ONYX». Съёмка + отчёт. - AirPods</p>
-                <input type="file" id="file4-6" style="display:none;">
                 <button onclick="submitTask('Бегом на 10 км в костюме ONYX по центральным улицам города, с табличкой «Я иду за айфоном в ONYX». Съёмка + отчёт.', 0, 'AirPods', 'file4-6')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-6" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-search"></i>
                 <p>Проведи сутки в людном месте с коробкой от iPhone и табличкой «Ищу любовь и технику в ONYX». Всё — на камеру. - Apple Watch</p>
-                <input type="file" id="file4-7" style="display:none;">
                 <button onclick="submitTask('Проведи сутки в людном месте с коробкой от iPhone и табличкой «Ищу любовь и технику в ONYX». Всё — на камеру.', 0, 'Apple Watch', 'file4-7')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-7" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-video"></i>
                 <p>Снимите видеоклип/трюк с техникой ONYX. Эпичность и стиль — ключ. - Приз определяется по предварительному согласованию в магазине.</p>
-                <input type="file" id="file4-8" style="display:none;">
                 <button onclick="submitTask('Снимите видеоклип/трюк с техникой ONYX. Эпичность и стиль — ключ.', 0, 'Приз определяется по предварительному согласованию в магазине.', 'file4-8')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-8" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-mask"></i>
                 <p>Проведи день в косплее «персонажа ONYX» — максимально креативно и дерзко: робот, хакер, агент Apple и т.п. Общайся с людьми, раздавай флаеры. - фирменный комбо-набор ONYX + участие в съёмке промо-ролика</p>
-                <input type="file" id="file4-9" style="display:none;">
                 <button onclick="submitTask('Проведи день в косплее «персонажа ONYX» — максимально креативно и дерзко: робот, хакер, агент Apple и т.п. Общайся с людьми, раздавай флаеры.', 0, 'фирменный комбо-набор ONYX + участие в съёмке промо-ролика', 'file4-9')">Приложить файл</button>
             </div>
+            <input type="file" id="file4-9" style="display:none;">
+
             <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
         </section>
 
@@ -517,51 +864,59 @@ I'll generate the full code with icons for every task in all levels.```html
             <div class="task">
                 <i class="fas fa-eye"></i>
                 <p>100 000 000 просмотров на Instagram/tiktok – 5 лет бесплатно обновляем айфон</p>
-                <input type="file" id="file5-1" style="display:none;">
                 <button onclick="submitTask('100 000 000 просмотров на Instagram/tiktok', 0, '5 лет бесплатно обновляем айфон', 'file5-1')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-1" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-handshake"></i>
                 <p>Убедить президента любой страны передать привет ONYX в видео и показать мерч (уточнить в магазине) — 8 лет бесплатно обновляем айфон</p>
-                <input type="file" id="file5-2" style="display:none;">
                 <button onclick="submitTask('Убедить президента любой страны передать привет ONYX в видео и показать мерч (уточнить в магазине)', 0, '8 лет бесплатно обновляем айфон', 'file5-2')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-2" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-football-ball"></i>
                 <p>Выбежать на поле во время финала Лиги Чемпионов с флагом ONYX и именем бренда на майке (уточнять в магазине) - 5 лет бесплатно обновляем айфон</p>
-                <input type="file" id="file5-3" style="display:none;">
                 <button onclick="submitTask('Выбежать на поле во время финала Лиги Чемпионов с флагом ONYX и именем бренда на майке (уточнять в магазине)', 0, '5 лет бесплатно обновляем айфон', 'file5-3')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-3" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-user-check"></i>
                 <p>Заставить MrBeast подписаться на аккаунт ONYX в Instagram и снять совместный челлендж (уточнять в магазине) — пожизненно бесплатно обновляем айфон</p>
-                <input type="file" id="file5-4" style="display:none;">
                 <button onclick="submitTask('Заставить MrBeast подписаться на аккаунт ONYX в Instagram и снять совместный челлендж (уточнять в магазине)', 0, 'пожизненно бесплатно обновляем айфон', 'file5-4')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-4" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-star"></i>
                 <p>Убедить голливудскую звезду типа Дуэйна Джонсона надеть мерч ONYX на красной ковровой дорожке (уточнить в магазине) — 8 лет бесплатно обновляем айфон</p>
-                <input type="file" id="file5-5" style="display:none;">
                 <button onclick="submitTask('Убедить голливудскую звезду типа Дуэйна Джонсона надеть мерч ONYX на красной ковровой дорожке (уточнить в магазине)', 0, '8 лет бесплатно обновляем айфон', 'file5-5')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-5" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-music"></i>
                 <p>Убедить рэпера упомянуть ONYX в новой песне (уточнять в магазине) — 3 года бесплатно обновляем айфон</p>
-                <input type="file" id="file5-6" style="display:none;">
                 <button onclick="submitTask('Убедить рэпера упомянуть ONYX в новой песне (уточнять в магазине)', 0, '3 года бесплатно обновляем айфон', 'file5-6')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-6" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-female"></i>
                 <p>Организовать, чтобы топ-модель надела мерч ONYX на fashion week и отметила бренд (уточнить в магазине) —5 лет бесплатно обновляем айфон</p>
-                <input type="file" id="file5-7" style="display:none;">
                 <button onclick="submitTask('Организовать, чтобы топ-модель надела мерч ONYX на fashion week и отметила бренд (уточнить в магазине)', 0, '5 лет бесплатно обновляем айфон', 'file5-7')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-7" style="display:none;">
+
             <div class="task">
                 <i class="fas fa-fist-raised"></i>
                 <p>Выбежать на ринг во время UFC с плакатом ONYX и крикнуть вызов (уточнить в магазине) — 5 лет бесплатно обновляем айфон</p>
-                <input type="file" id="file5-8" style="display:none;">
                 <button onclick="submitTask('Выбежать на ринг во время UFC с плакатом ONYX и крикнуть вызов (уточнить в магазине)', 0, '5 лет бесплатно обновляем айфон', 'file5-8')">Приложить файл</button>
             </div>
+            <input type="file" id="file5-8" style="display:none;">
+
             <button onclick="showMain()"><i class="fas fa-arrow-left"></i> Назад</button>
         </section>
     </section>
