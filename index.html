@@ -148,17 +148,23 @@
             font-size: 16px;
             border-radius: 15px;
         }
+        .points-label {
+            font-size: 20px;
+            color: #FFFFFF;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Добавлена тень для читаемости */
+        }
         #points {
             font-size: 28px;
             font-weight: 700;
-            color: #FFFFFF; /* Изменен цвет текста на белый для читаемости на фоне */
+            color: #FFD700; /* Золотой цвет для цифр баллов */
             background-color: #1E3A8A;
             padding: 8px 20px;
             border-radius: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
             animation: pulse 2s infinite;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Улучшена читаемость текста */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
         }
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -180,7 +186,7 @@
             margin-bottom: 5px;
         }
         .prize .points-label {
-            font-size: 20px;
+            font-size: 18px; /* Сделан меньше */
             color: #666666;
             margin-bottom: 10px;
         }
@@ -254,7 +260,7 @@
 <body>
     <header>
         <h1>ONYX: Вызов принят</h1>
-        <p>Ваши баллы: <span id="points">0</span></p>
+        <p class="points-label">Ваши баллы: <span id="points">0</span></p>
     </header>
 
     <section id="referral">
